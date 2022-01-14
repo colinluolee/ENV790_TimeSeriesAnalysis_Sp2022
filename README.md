@@ -9,6 +9,11 @@ Zoom Meeting ID: 927 1600 1271 or click here.
 
 Passcode: TSA2022
 
+**Student**
+
+Colin Lee
+colin.l.lee@duke.edu
+
 
 **Instructor** 
 
