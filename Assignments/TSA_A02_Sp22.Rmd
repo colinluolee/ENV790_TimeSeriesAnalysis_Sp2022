@@ -1,7 +1,7 @@
 ---
 title: "ENV 790.30 - Time Series Analysis for Energy Data | Spring 2021"
 subtitle: "Assignment 2 - Due date 01/26/22"
-author: "Student Name"
+author: "Colin Lee"
 output: pdf_document
 geometry: margin=2.54cm
 ---
@@ -21,6 +21,10 @@ R packages needed for this assignment:"forecast","tseries", and "dplyr". Install
 
 ```{r}
 #Load/install required package here
+install.packages("forecast")
+install.packages("tseries")
+install.packages("dplyr")
+install.packages("xlsx")
 
 ```
 
@@ -32,6 +36,8 @@ Consider the data provided in the spreadsheet "Table_10.1_Renewable_Energy_Produ
 ```{r}
 #Importing data set
 
+mydata <- read.table(file = "/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/Table_10.1_Renewable_Energy_Production_and_Consumption_by_Source.xlsx",header=FALSE,skip=0)
+
 ```
 
 
@@ -39,7 +45,9 @@ Consider the data provided in the spreadsheet "Table_10.1_Renewable_Energy_Produ
 You will work only with the following columns: Total Biomass Energy Production, Total Renewable Energy Production, Hydroelectric Power Consumption. Create a data frame structure with these three time series only. Use the command head() to verify your data.
 
 ```{r}
+colnames(mydata)=c("Total Biomass Energy Production","Total Renewable Energy Production", "Hydroelectric Power Consumption")
 
+head(mydata)
 ```
 
 
