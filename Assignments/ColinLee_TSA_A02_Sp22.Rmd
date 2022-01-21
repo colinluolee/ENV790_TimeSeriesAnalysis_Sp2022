@@ -26,6 +26,9 @@ install.packages("tseries")
 install.packages("dplyr")
 install.packages("xlsx")
 
+library(lubridate)
+library(ggplot2)
+
 ```
 
 
@@ -36,7 +39,7 @@ Consider the data provided in the spreadsheet "Table_10.1_Renewable_Energy_Produ
 ```{r}
 #Importing data set
 
-mydata <- read.table(file = "/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/Table_10.1_Renewable_Energy_Production_and_Consumption_by_Source.xlsx",header=FALSE,skip=0)
+mydata <- read.xlsx(file = "/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/Table_10.1_Renewable_Energy_Production_and_Consumption_by_Source.xlsx", sheetName = "Monthly Data", startRow = 12)
 
 ```
 
@@ -45,6 +48,8 @@ mydata <- read.table(file = "/Users/colinlee/Documents/Duke/Spring 2022/ENV790/E
 You will work only with the following columns: Total Biomass Energy Production, Total Renewable Energy Production, Hydroelectric Power Consumption. Create a data frame structure with these three time series only. Use the command head() to verify your data.
 
 ```{r}
+mydata <- mydata[,4:6]
+
 colnames(mydata)=c("Total Biomass Energy Production","Total Renewable Energy Production", "Hydroelectric Power Consumption")
 
 head(mydata)
@@ -55,7 +60,7 @@ head(mydata)
 Transform your data frame in a time series object and specify the starting point and frequency of the time series using the function ts().
 
 ```{r}
-
+ts_mydata <- ts(mydata, start = 1, frequency = 1)
 ```
 
 
@@ -63,7 +68,23 @@ Transform your data frame in a time series object and specify the starting point
 Compute mean and standard deviation for these three series.
 
 ```{r}
+#summary(mydata)
 
+mean_biomass <- mean(mydata$`Total Biomass Energy Production`)
+mean_renewable <- mean(mydata$`Total Renewable Energy Production`)
+mean_hydro <- mean(mydata$`Hydroelectric Power Consumption`)
+
+mean_biomass
+mean_renewable
+mean_hydro
+
+sd_biomass <- sd(mydata$`Total Biomass Energy Production`)
+sd_renewable <- sd(mydata$`Total Renewable Energy Production`)
+sd_hydro <- sd(mydata$`Hydroelectric Power Consumption`)
+
+sd_biomass
+sd_renewable
+sd_hydro
 ```
 
 
@@ -72,14 +93,30 @@ Display and interpret the time series plot for each of these variables. Try to m
 
 ```{r}
 
+plot(mydata[,"Total Biomass Energy Production"],type="l",col="red",ylab="Trillion Btu")
+title(main="Series for Biomass Energy Production")
+abline(h=mean(mydata[,"Total Biomass Energy Production"]),col="maroon")
+legend("topright",legend=c("Biomass Energy Production", "Mean Biomass Energy Production"), lty=c("solid","solid"),col=c("red","maroon"))
+
+plot(mydata[,"Total Renewable Energy Production"],type="l",col="blue",ylab="Trillion Btu")
+title(main="Total Renewable Energy Production")
+abline(h=mean(mydata[,"Total Renewable Energy Production"]),col="violet")
+legend("topright",legend=c("Renewable Energy Production", "Mean Renewable Energy Production"), lty=c("solid","solid"),col=c("blue","violet"))
+
+plot(mydata[,"Hydroelectric Power Consumption"],type="l",col="grey",ylab="Trillion Btu")
+title(main="Hydroelectric Power Consumption")
+abline(h=mean(mydata[,"Hydroelectric Power Consumption"]),col="black")
+legend("topright",legend=c("Hydroelectric Power Consumption", "Mean Hydroelectric Power Consumption"), lty=c("solid","solid"),col=c("grey","black"))
 ```
 
 
 ## Question 5
 Compute the correlation between these three series. Are they significantly correlated? Explain your answer.
 
-```{r}
+Biomass energy production is significantly correlated with renewable energy production with a value of 0.923 between the variables. This indicates a significant positive correlation between the two variables. Furthermore, neither of those two variables are significantly correlated with hydroelectric power consumption, and they are slightly negatively correlated with hydroelectric power consumption.
 
+```{r}
+cor(mydata)
 ```
 
 
@@ -87,7 +124,9 @@ Compute the correlation between these three series. Are they significantly corre
 Compute the autocorrelation function from lag 1 up to lag 40 for these three variables. What can you say about these plots? Do the three of them have the same behavior?
 
 ```{r}
+acf(mydata, lag=40, pl=FALSE)
 
+acf(mydata, lag=40)
 ```
 
 
@@ -95,7 +134,9 @@ Compute the autocorrelation function from lag 1 up to lag 40 for these three var
 Compute the partial autocorrelation function from lag 1 to lag 40 for these three variables. How these plots differ from the ones in Q6?
 
 ```{r}
+pacf(mydata, lag=40, pl=FALSE)
 
+pacf(mydata, lag=40)
 ```
 
 
