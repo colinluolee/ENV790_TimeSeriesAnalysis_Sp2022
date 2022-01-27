@@ -124,24 +124,25 @@ cor(mydata)
 ## Question 6
 Compute the autocorrelation function from lag 1 up to lag 40 for these three variables. What can you say about these plots? Do the three of them have the same behavior?
 
-For the Total Biomass Energy Production and Total Renewable Energy Production plots, we can see that there is high autocorrelation over time (and slightly deteriorates over for greater lags), indicating that there is high dependence between adjacent values. This is not so much the case with hydroelectric power consumption, where there appears to be a weird pattern for autocorrelation that peaks every few lags. 
+For the Total Biomass Energy Production and Total Renewable Energy Production plots, we can see that there is high autocorrelation over time (and slightly deteriorates over for greater lags indicating it is non-stationary), indicating that there is high dependence between adjacent values. This is not so much the case with hydroelectric power consumption, where there instead appears to be a seasonal pattern for autocorrelation that peaks every few lags and is also non-stationary.
 
 ```{r acf}
 #acf(mydata, lag=40, pl=FALSE)
-
-acf(mydata, lag=40)
+#acf(mydata, lag=40)
+acf(ts_mydata, lag.max = 40)
 ```
 
 
 ## Question 7
 Compute the partial autocorrelation function from lag 1 to lag 40 for these three variables. How these plots differ from the ones in Q6?
 
-The PACF plots differ greatly from the ACF plots in that the values are not nearly as high or close to 1.0, and the plots for Total Biomass Energy Production and Total Renewable Energy Production are not as strong with consistently high correlation values compared to the ACF plots. Here, all the charts look slightly similar with low PACF function values and no discernable pattern. 
+The PACF plots differ greatly from the ACF plots in that the values are not nearly as high or close to 1.0, and the plots for Total Biomass Energy Production and Total Renewable Energy Production are not as strong with consistently high correlation values compared to the ACF plots. Here, all the charts look slightly similar with low PACF function values and no discernible pattern but possibly some seasonality.
 
 ```{r pacf}
 #pacf(mydata, lag=40, pl=FALSE)
 
-pacf(mydata, lag=40)
+#pacf(mydata, lag=40)
+pacf(ts_mydata, lag.max = 40)
 ```
 
 
