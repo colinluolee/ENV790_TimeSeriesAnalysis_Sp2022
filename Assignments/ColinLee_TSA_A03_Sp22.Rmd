@@ -266,7 +266,6 @@ The PACF is slightly different in that the y-axis range for PACF values is much 
 ```{r Q8}
 acf(deseason_hydro,lag.max=40,main=paste("Deseasoned Hydroelectric Power Consumption ACF"))
 pacf(deseason_hydro,lag.max=40,main=paste("Deseasoned Hydroelectric Power Consumption PACF"))
-pacf(mydata[,3],lag.max=40,main=paste("Hydroelectric Power Consumption PACF"))
 ```
 
 
