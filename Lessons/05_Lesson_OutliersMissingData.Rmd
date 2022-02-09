@@ -274,5 +274,5 @@ summary(inflow_random$inflow)
 
 ```
 
-
+certain outliers not removed because there is not enough evidence by the test (not < 0.05) to remove those outliers
 
