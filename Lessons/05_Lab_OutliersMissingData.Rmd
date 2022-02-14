@@ -110,15 +110,25 @@ Additional info on decompose()
 
 ```{r}
 #Ex1: Using R decompose function decompose the wind data in seasonal, trend and random
-
+#Using R decompose function
+decompose_wind_data=decompose(clean_wind_data,"additive")
+plot(decompose_wind_data)
 
 #Ex2: Store the three component in separate vector
-  
+wind_random <- (decompose_wind_data$random)
+wind_seasonal <- (decompose_wind_data$seasonal)
+wind_trend <- (decompose_wind_data$trend)
+
 
 #Ex3: Create one data frame with all three vector and the Date columns from wind_data
+#df_decompose_wind <- cbind(full_wind_data$Date,wind_random,wind_seasonal,wind_trend)#similarly rows could be added using rbind()
+
+df_decompose_wind <- data.frame("Date"=full_wind_data$Date,wind_random,wind_seasonal,wind_trend)
 
 
 #Ex4: Inspect the data frame using head() and tail()
+head(df_decompose_wind)
+tail(df_decompose_wind)
 
 
 
@@ -132,6 +142,9 @@ Discussion: Why the missing values??
 ```{r}
 
 #Ex5: Try to reproduce the trend component from decompose().
+
+order <- 6
+rep_trend <- array(NA, length(clean_wind_data))
 
 #Ex6: Try to reproduce the seasonal component from decompose().
 
