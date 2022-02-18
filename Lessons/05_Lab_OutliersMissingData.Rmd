@@ -86,7 +86,7 @@ full_wind_data <- data_frame(Date=wind_data$DATE, Wind = wind_data$AWND.1, Wind_
 ggplot(full_wind_data) +
   geom_line(aes(x = Date, y = Wind_Clean), color = "red") +
   geom_line(aes(x = Date, y = Wind), color = "black") +
-  ylab("Average Wind Speed") 
+  ylab("Average Wind Speed")
   
 
 ```
@@ -145,6 +145,7 @@ Discussion: Why the missing values??
 
 order <- 6
 rep_trend <- array(NA, length(clean_wind_data))
+
 
 #Ex6: Try to reproduce the seasonal component from decompose().
 
