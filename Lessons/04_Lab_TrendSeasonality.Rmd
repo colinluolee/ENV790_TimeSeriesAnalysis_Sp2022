@@ -289,7 +289,7 @@ Also check for determinist trend, for non-seasonal data only.
 ```{r}
 #Deterministic trend with Spearman Correlation Test
 print("Results from Spearman Correlation")
-sp_rho=cor(inflow_data_yearly,my_year,method="spearman")
+sp_rho=cor(inflow_data_yearly,c(1:ncol(inflow_data_matrix)),method="spearman")
 print(sp_rho)
 
 #with cor.test you can get test statistics

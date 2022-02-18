@@ -126,20 +126,17 @@ colnames(totaldata)=c("Total Renewable Energy Production","Differenced Total Ren
 ### Q4
 Using ggplot() create a line plot that shows the three series together. Make sure you add a legend to the plot.
 
-For some reason I could not get the legend to appear after 2 hours of debugging.
-
 ```{r Q4}
 ggplot(totaldata) +
-            geom_line(aes(x=totaldata[,4],y=totaldata[,1]), color= "red") +
-            geom_line(aes(x=totaldata[,4],y=totaldata[,2]), color = "blue") +
-            geom_line(aes(x=totaldata[,4],y=totaldata[,3]), color = "black") +
-            labs(y = "Trillion Btu",
+  geom_line(aes(x = Month, y = totaldata[,1], color = "1")) +
+  geom_line(aes(x = Month, y = totaldata[,2], color = "2")) +
+  geom_line(aes(x = Month, y = totaldata[,3], color = "3")) +
+  labs(y = "Trillion Btu",
             x = "Month",
-            title = "Normal, Detrended, and Differenced Total Renewable Energy Production",
-            color = "") +
-            scale_color_manual(values = c("red", "black", "blue"),
-                                labels = c("Total Renewable Energy Production", "Differenced Total Renewable Energy Production","Detrended Total Renewable Energy Production")) +
-            theme(legend.position = "bottom")
+            title = "Normal, Detrended, and Differenced Total Renewable Energy Production",color="") +
+  scale_color_manual(values = c("1" = "red", "2" = "blue", "3" = "black"),
+                                labels=c("Normal", "Differenced", "Detrended")) +
+  theme(legend.position = "bottom")
 
 #could not get legend to appear for some reason? sorry
 
