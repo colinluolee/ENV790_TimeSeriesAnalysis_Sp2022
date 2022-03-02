@@ -124,7 +124,7 @@ ggplot(clean_solar_wind) +
 
 Transform wind and solar series into a time series object and apply the decompose function on them using the additive option, i.e., `decompose(ts_data, type = "additive")`. What can you say about the trend component? What about the random component? Does the random component look random? Or does it appear to still have some seasonality on it?
 
-For the trend component for both solar and wind, there is a clearly increasing trend.
+For the trend component for both solar and wind, there is a clearly increasing trend. However, this trend does not start (is not very easily visible) until the late 2000s for wind and mid 2010s for solar.
 
 For the random component for both solar and wind, we can see an increasing level of randomness over time. The random component does actually look like it has some sort of repetition that resembles seasonality. 
 
@@ -147,7 +147,7 @@ title(main = "Wind")
 
 Use the decompose function again but now change the type of the seasonal component from additive to multiplicative. What happened to the random component this time?
 
-The random component is now much more random and does not follow the seasonal pattern it did in the additive decomposition. 
+The random component is now much more random until about 1990 for solar and early 2000s for wind, where they do not follow the seasonal pattern it did in the additive decomposition. However, after those years, there still appears to be some small patterning, not as obvious as with the addititive series. 
 
 ```{r Q5}
 decompose_solar_m <- decompose(ts_solar,type = "multiplicative")
@@ -171,10 +171,22 @@ When fitting a model to this data, do you think you need all the historical data
 Create a new time series object where historical data starts on January 2012. Hint: use `filter()` function so that you don't need to point to row numbers, .i.e, `filter(xxxx, year(Date) >= 2012 )`. Apply the decompose function `type=additive` to this new time series. Comment the results. Does the random component look random? Think about our discussion in class about trying to remove the seasonal component and the challenge of trend on the seasonal component.
 
 ```{r Q7}
+solar_wind_new <- filter(clean_solar_wind, year(Month) >= 2012)
+
+ts_solar_new <- ts(as.numeric(solar_wind_new[,1]),start = c(2012,1), frequency = 12)
+ts_wind_new <- ts(as.numeric(solar_wind_new[,2]),start = c(2012,1), frequency = 12)
+decompose_solar_new <- decompose(ts_solar_new,type = "additive")
+decompose_wind_new <- decompose(ts_wind_new,type = "additive")
+
+
+plot(decompose_solar_new)
+title(main = "Solar Post 2012")
+plot(decompose_wind_new)
+title(main = "Wind Post 2012")
 
 ```
 
-> Answer:
+> Answer: The random component for solar looks somewhat seasonal, with some randomness between 2016 and 2018. However, the random component for wind is much more random in comparison. With the trend, we can see a more steady increase in the trend for both, instead of decades of flat/no trend before large increases. The difficulty of having an actually random component look random might have been due to the non-uniform trend in the original time series. Over time, the trend changes significantly, making removing it alongside the seasonal component to form the random component still results in some seasonal patterns. Another source for the problem may be a stochastic seasonal trend requiring differencing to get fully removed. 
 
 
 
