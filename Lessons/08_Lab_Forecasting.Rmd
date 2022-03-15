@@ -47,9 +47,9 @@ Research question: Can you see any changes on the rainfall regime or average tem
 
 ```{r}
 # Import both datasets using the read.csv function.
-Rainfall_BR <- read.csv("./Data/pr_1901_2016_BRA.csv", stringsAsFactors = TRUE)
+Rainfall_BR <- read.csv("/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/pr_1901_2016_BRA.csv", stringsAsFactors = TRUE)
 
-Temp_BR <- read.csv("./Data/tas_1901_2016_BRA.csv", stringsAsFactors = TRUE)
+Temp_BR <- read.csv("/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/tas_1901_2016_BRA.csv", stringsAsFactors = TRUE)
 
 # Tidy the rainfall data sets.
 #a Rename the column with Rainfall to get rid of the dots.

@@ -4,7 +4,7 @@ date: "02/21/2022"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Objectives
@@ -42,9 +42,9 @@ Research question: Can you see any changes on the rainfall regime or average tem
 ```{r}
 #Exercise 1: Look at the code I used to import and tidy the dataset for today. Make sure you understand the pipe structure. 
 
-Rainfall_BR <- read.csv("./Data/pr_1901_2016_BRA.csv", stringsAsFactors = TRUE)
+Rainfall_BR <- read.csv("/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/pr_1901_2016_BRA.csv", stringsAsFactors = TRUE)
 
-Temp_BR <- read.csv("./Data/tas_1901_2016_BRA.csv", stringsAsFactors = TRUE)
+Temp_BR <- read.csv("/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/tas_1901_2016_BRA.csv", stringsAsFactors = TRUE)
 
 #Within the pipe I am performing the following steps:
 #a Rename the column with Rainfall to get rid of the dots.

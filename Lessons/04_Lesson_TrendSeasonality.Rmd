@@ -4,7 +4,7 @@ author: "Luana Lima"
 date: "01/26/2022"
 output: pdf_document
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Setting R code chunk options
@@ -35,7 +35,7 @@ Let's continue working with our inflow data for reservoirs in Brazil.
 ```{r}
 
 #Importing time series data from text file#
-raw_inflow_data <- read.table(file="./Data/inflowtimeseries.txt",header=FALSE,skip=0)
+raw_inflow_data <- read.table(file="/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/inflowtimeseries.txt",header=FALSE,skip=0)
 
 #Trim the table to include only columns you need
 nhydro <- ncol(raw_inflow_data)-2
