@@ -103,4 +103,3 @@ Plot the ACF and PACF of a seasonal ARIMA$(0, 1)\times(1, 0)_{12}$ model with $\
 ```{r}
 
 ```
-
