@@ -44,7 +44,7 @@ For this module we will continue to work with the electricity retail price in US
 
 #Importing time series data from text file#
 electricity_price <- read.csv(
-  file="./Data/Average_retail_price_of_electricity_United_States_monthly.csv",
+  file="/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/Average_retail_price_of_electricity_United_States_monthly.csv",
   header=TRUE,
   skip=4)
 
@@ -182,7 +182,7 @@ plot(SNAIVE_seas)
 
 # Model 3:  SARIMA 
 #remember auto.arima does not call the forecast() internally so we need one more step
-SARIMA_for <- forecast(SARIMA_autofit,h=12)
+SARIMA_for <- forecast::forecast(SARIMA_autofit,h=12)
 SARIMA_scores <- accuracy(SARIMA_for)
 plot(SARIMA_for)
 

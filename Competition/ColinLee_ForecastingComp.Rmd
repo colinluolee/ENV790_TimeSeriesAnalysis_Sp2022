@@ -1,0 +1,28 @@
+---
+title: "TSA: Forecasting Competition"
+author: "Colin Lee"
+date: "04/13/2022"
+output: pdf_document
+always_allow_html: true
+editor_options: 
+  chunk_output_type: console
+  markdown: 
+    wrap: sentence
+---
+
+```{r}
+library(openxlsx)
+library(forecast)
+library(tseries)
+library(ggplot2)
+library(Kendall)
+library(lubridate)
+library(tidyverse)  #load this package so yon clean the data frame using pipes
+
+loadfile <- "/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Competition/Data/load.xlsx"
+
+load_data <- read.xlsx(loadfile,sheet=1,startRow = 2)
+
+
+```
+

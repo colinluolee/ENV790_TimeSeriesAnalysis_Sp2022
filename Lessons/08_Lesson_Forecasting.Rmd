@@ -4,7 +4,7 @@ author: "Luana Lima"
 date: "02/28/2022"
 output: pdf_document
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## Setting R code chunk options
@@ -40,7 +40,7 @@ For this module we will continue to work with the electricity retail price in US
 ```{r}
 
 #Importing time series data from text file#
-electricity_price <- read.csv(file="./Data/Average_retail_price_of_electricity_United_States_monthly.csv",header=TRUE,skip=4)
+electricity_price <- read.csv(file="/Users/colinlee/Documents/Duke/Spring 2022/ENV790/ENV790_TimeSeriesAnalysis_Sp2022/Data/Average_retail_price_of_electricity_United_States_monthly.csv",header=TRUE,skip=4)
 
 #Inspect data
 head(electricity_price)
@@ -215,7 +215,7 @@ When forecasting with ARIMA models, first you will need to fit the model with th
 SARIMA_autofit <- auto.arima(ts_electricity_price[,"All.sectors"])
 print(SARIMA_autofit)
 
-SARIMA_forecast <- forecast(object = SARIMA_autofit, h = 36)
+SARIMA_forecast <- forecast(SARIMA_autofit, h = 36)
 plot(SARIMA_forecast)
 
 # Model 10:  ARIMA on deseasonal data
